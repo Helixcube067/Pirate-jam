@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/PregameMenus/Main Menu/Main Menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerInventory="*res://PlayerInventory.gd"
+
 [input]
 
 game_up={
@@ -78,10 +82,6 @@ game_run={
 run/main_scene="res://node_2d.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
-
-[autoload]
-
-PlayerInventory="*res://PlayerInventory.gd"
 
 [rendering]
 

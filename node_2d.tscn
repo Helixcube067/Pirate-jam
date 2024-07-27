@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b587oay532ltf"]
 
 [ext_resource type="PackedScene" uid="uid://bcwvg17bfwkc" path="res://Items/Item.tscn" id="1_ga130"]
-[ext_resource type="Script" path="res://Items/DragonsClawItem.gd" id="2_gqv0t"]
+[ext_resource type="Script" path="res://Items/DragonsToothItem.gd" id="2_gqv0t"]
 
 [node name="Node2D" type="Node2D"]
 
