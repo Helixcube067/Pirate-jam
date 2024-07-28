@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PlayerInventory="*res://PlayerInventory.gd"
+PlayerInventory="*res://Scripts/PlayerInventory.gd"
 
 [input]
 

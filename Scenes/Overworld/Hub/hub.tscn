@@ -1,11 +1,121 @@
-[gd_scene load_steps=3 format=3 uid="uid://fkyjmobtredo"]
+[gd_scene load_steps=8 format=3 uid="uid://fkyjmobtredo"]
 
-[ext_resource type="Script" path="res://Scenes/Overworld/Hub/hub.gd" id="1_i2yxn"]
+[ext_resource type="Script" path="res://Scripts/UI/GameUI.gd" id="1_5dxxd"]
 [ext_resource type="AudioStream" uid="uid://b7xes288u3ef4" path="res://Audio/acorn_forest.mp3" id="2_eimee"]
+[ext_resource type="PackedScene" uid="uid://03skby2tpkx2" path="res://Scenes/Recipes.tscn" id="3_5vst7"]
+[ext_resource type="Script" path="res://Scenes/Overworld/Hub/hub.gd" id="3_ani2x"]
+[ext_resource type="PackedScene" uid="uid://3ybmkhoy5uh3" path="res://MixMenu.tscn" id="3_cmbid"]
+[ext_resource type="FontFile" uid="uid://8rx68otls0l5" path="res://8bitOperatorPlus8-Bold.ttf" id="3_wkc8m"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Request template/TestRequest.gd" id="5_kudt8"]
 
-[node name="Level" type="Node2D"]
-script = ExtResource("1_i2yxn")
+[node name="Level" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5dxxd")
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("2_eimee")
 bus = &"BGM"
+script = ExtResource("3_ani2x")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 919.0
+offset_bottom = 491.0
+scale = Vector2(1.2521, 1.31836)
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Recipes" parent="Panel" instance=ExtResource("3_5vst7")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 202.061
+offset_top = 210.109
+offset_right = 202.061
+offset_bottom = 210.109
+scale = Vector2(0.484678, 0.484678)
+
+[node name="MixMenu" parent="Panel" instance=ExtResource("3_cmbid")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+scale = Vector2(0.793328, 0.751271)
+
+[node name="Hub menu" type="Control" parent="Panel"]
+unique_name_in_owner = true
+anchors_preset = 0
+anchor_right = 1.00218
+anchor_bottom = 1.00204
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Right menu" type="HBoxContainer" parent="Panel/Hub menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.791531
+anchor_top = 0.00406504
+anchor_right = 0.997574
+anchor_bottom = 0.14432
+offset_right = -24.7655
+offset_bottom = -9.00564
+scale = Vector2(1.15009, 1.15009)
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Hub menu/Right menu"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Recipe button" type="Button" parent="Panel/Hub menu/Right menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wkc8m")
+theme_override_font_sizes/font_size = 20
+text = "Recipes"
+
+[node name="Mix button" type="Button" parent="Panel/Hub menu/Right menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wkc8m")
+theme_override_font_sizes/font_size = 20
+text = "Start mixing"
+
+[node name="RequestTab" type="Control" parent="Panel/Hub menu"]
+layout_mode = 1
+anchor_right = 0.430134
+anchor_bottom = 0.526423
+offset_right = -75.1537
+scale = Vector2(1.23412, 1)
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Current request" type="Label" parent="Panel/Hub menu/RequestTab"]
+layout_mode = 0
+offset_right = 125.0
+offset_bottom = 29.0
+text = "Current request:"
+
+[node name="Requester name" type="Label" parent="Panel/Hub menu/RequestTab"]
+layout_mode = 0
+offset_top = 27.3066
+offset_right = 128.0
+offset_bottom = 56.3066
+text = "Requester: TestName"
+
+[node name="Label3" type="Label" parent="Panel/Hub menu/RequestTab"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 384.0
+offset_bottom = 119.0
+text = "Hi I have a really bad cough and nobody cant fix it"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/Hub menu"]
+layout_mode = 0
+offset_left = 210.047
+offset_top = 1.51703
+offset_right = 250.047
+offset_bottom = 41.517
+scale = Vector2(1.61892, 1.40621)
+script = ExtResource("5_kudt8")
+
+[connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Recipe button" to="." method="_on_recipe_button_pressed"]
+[connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Mix button" to="." method="_on_mix_button_pressed"]
