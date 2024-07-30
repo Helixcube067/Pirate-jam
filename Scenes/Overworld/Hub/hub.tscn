@@ -1,21 +1,66 @@
-[gd_scene load_steps=8 format=3 uid="uid://fkyjmobtredo"]
+[gd_scene load_steps=13 format=3 uid="uid://fkyjmobtredo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GameUI.gd" id="1_5dxxd"]
-[ext_resource type="AudioStream" uid="uid://b7xes288u3ef4" path="res://Audio/acorn_forest.mp3" id="2_eimee"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/RequestManager.gd" id="2_t42kr"]
 [ext_resource type="PackedScene" uid="uid://03skby2tpkx2" path="res://Scenes/Recipes.tscn" id="3_5vst7"]
 [ext_resource type="Script" path="res://Scenes/Overworld/Hub/hub.gd" id="3_ani2x"]
 [ext_resource type="PackedScene" uid="uid://3ybmkhoy5uh3" path="res://MixMenu.tscn" id="3_cmbid"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/AdamRequest.gd" id="3_v8ie5"]
 [ext_resource type="FontFile" uid="uid://8rx68otls0l5" path="res://8bitOperatorPlus8-Bold.ttf" id="3_wkc8m"]
-[ext_resource type="Script" path="res://Scripts/Request scripts/Request template/TestRequest.gd" id="5_kudt8"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/GeorgeRequest.gd" id="4_20gqs"]
+[ext_resource type="Texture2D" uid="uid://cfamudynl75oc" path="res://images/AdamSprite.png" id="4_xf3af"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/YazminRequest.gd" id="5_qwdv7"]
+[ext_resource type="Texture2D" uid="uid://byur7crbmw243" path="res://images/GeorgeSprite.png" id="6_t32jx"]
+[ext_resource type="AudioStream" uid="uid://gwmkwdaxwurq" path="res://Audio/Pirate Jam OST 1.mp3" id="8_xa05p"]
 
 [node name="Level" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5dxxd")
 
+[node name="RequestManager" type="Control" parent="." node_paths=PackedStringArray("requests")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_t42kr")
+requests = [NodePath("Adam"), NodePath("George")]
+
+[node name="Adam" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_v8ie5")
+imagePath = "res://images/AdamSprite.png"
+requestersName = "Adam"
+requestersPic = ExtResource("4_xf3af")
+entryDialogue = "Yo- uh, I'm here to pick up a-uh perscription for a-uh, red potion? "
+completedDialogue = "Thanks."
+incorrectDialogue = "U-um....this....i'snt what i asked for."
+
+[node name="George" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_20gqs")
+requestersName = "George"
+requestersPic = ExtResource("6_t32jx")
+entryDialogue = "Good afternoon! My doctor told me to pick up a perscription for my bad eyesight. Usually I can see clear as day but now I'm blind as a bat gahaha. Anywho, he recommended I get a Yellow Potion to get better, could you help me out with that?"
+completedDialogue = "Thank you so much, you're a miracle worker!"
+incorrectDialogue = "Whoops looks like you gave me the wrong thing."
+
+[node name="Yazmin" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_qwdv7")
+requestersName = "Yazmin"
+entryDialogue = "Hello! I'm here to get a-uh, purple potion?"
+completedDialogue = "Thank you so much!"
+incorrectDialogue = "Is this really a purple potion?"
+
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
-stream = ExtResource("2_eimee")
+stream = ExtResource("8_xa05p")
 bus = &"BGM"
 script = ExtResource("3_ani2x")
 
@@ -31,10 +76,10 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-offset_left = 202.061
-offset_top = 210.109
-offset_right = 202.061
-offset_bottom = 210.109
+offset_left = 383.356
+offset_top = 118.329
+offset_right = 383.356
+offset_bottom = 118.329
 scale = Vector2(0.484678, 0.484678)
 
 [node name="MixMenu" parent="Panel" instance=ExtResource("3_cmbid")]
@@ -79,6 +124,12 @@ theme_override_fonts/font = ExtResource("3_wkc8m")
 theme_override_font_sizes/font_size = 20
 text = "Start mixing"
 
+[node name="Give button" type="Button" parent="Panel/Hub menu/Right menu/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_wkc8m")
+theme_override_font_sizes/font_size = 20
+text = "Give item"
+
 [node name="RequestTab" type="Control" parent="Panel/Hub menu"]
 layout_mode = 1
 anchor_right = 0.430134
@@ -95,27 +146,36 @@ offset_bottom = 29.0
 text = "Current request:"
 
 [node name="Requester name" type="Label" parent="Panel/Hub menu/RequestTab"]
+unique_name_in_owner = true
 layout_mode = 0
 offset_top = 27.3066
 offset_right = 128.0
 offset_bottom = 56.3066
 text = "Requester: TestName"
 
-[node name="Label3" type="Label" parent="Panel/Hub menu/RequestTab"]
+[node name="Request text" type="RichTextLabel" parent="Panel/Hub menu/RequestTab"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_top = 55.0
-offset_right = 384.0
-offset_bottom = 119.0
-text = "Hi I have a really bad cough and nobody cant fix it"
+offset_top = 56.8889
+offset_right = 238.0
+offset_bottom = 236.889
+bbcode_enabled = true
+text = "Good afternoon! My doctor told me to pick up a perscription for my bad eyesight. Usually I can see clear as day but now I'm blind as a bat gahaha. Anywho, he recommended I get a Yellow Potion to get better, could you help me out with that?"
+fit_content = true
+scroll_active = false
 
-[node name="ColorRect" type="ColorRect" parent="Panel/Hub menu"]
+[node name="Requesters pic" type="TextureRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = 210.047
-offset_top = 1.51703
-offset_right = 250.047
-offset_bottom = 41.517
-scale = Vector2(1.61892, 1.40621)
-script = ExtResource("5_kudt8")
+offset_left = 408.0
+offset_top = 168.0
+offset_right = 448.0
+offset_bottom = 208.0
+scale = Vector2(9.03064, 11.8695)
+texture = ExtResource("4_xf3af")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Recipe button" to="." method="_on_recipe_button_pressed"]
 [connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Mix button" to="." method="_on_mix_button_pressed"]
+[connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Give button" to="RequestManager" method="_on_give_button_pressed"]

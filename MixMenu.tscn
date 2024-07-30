@@ -133,7 +133,8 @@ text = "="
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Mixslot1Texture" type="ColorRect" parent="Panel"]
+[node name="Mixslot1Texture" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 anchor_left = 0.0721093
 anchor_top = 0.849811
@@ -145,7 +146,8 @@ scale = Vector2(0.104836, 0.114424)
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Mixslot2Texture" type="ColorRect" parent="Panel"]
+[node name="Mixslot2Texture" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 anchor_left = 0.400511
 anchor_top = 0.851353
@@ -157,7 +159,8 @@ scale = Vector2(0.104836, 0.114424)
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ResultsslotTexture" type="ColorRect" parent="Panel"]
+[node name="ResultsslotTexture" type="TextureRect" parent="Panel"]
+unique_name_in_owner = true
 layout_mode = 2
 anchor_left = 0.749763
 anchor_top = 0.851353
