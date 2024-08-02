@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://fkyjmobtredo"]
+[gd_scene load_steps=18 format=3 uid="uid://fkyjmobtredo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GameUI.gd" id="1_5dxxd"]
 [ext_resource type="Script" path="res://Scripts/Request scripts/RequestManager.gd" id="2_t42kr"]
@@ -8,22 +8,28 @@
 [ext_resource type="Script" path="res://Scripts/Request scripts/Requests/AdamRequest.gd" id="3_v8ie5"]
 [ext_resource type="FontFile" uid="uid://8rx68otls0l5" path="res://8bitOperatorPlus8-Bold.ttf" id="3_wkc8m"]
 [ext_resource type="Script" path="res://Scripts/Request scripts/Requests/GeorgeRequest.gd" id="4_20gqs"]
-[ext_resource type="Texture2D" uid="uid://cfamudynl75oc" path="res://images/AdamSprite.png" id="4_xf3af"]
+[ext_resource type="Texture2D" uid="uid://cfamudynl75oc" path="res://images/Customers/AdamSprite.png" id="4_xf3af"]
 [ext_resource type="Script" path="res://Scripts/Request scripts/Requests/YazminRequest.gd" id="5_qwdv7"]
-[ext_resource type="Texture2D" uid="uid://byur7crbmw243" path="res://images/GeorgeSprite.png" id="6_t32jx"]
+[ext_resource type="Texture2D" uid="uid://byur7crbmw243" path="res://images/Customers/GeorgeSprite.png" id="6_t32jx"]
+[ext_resource type="Texture2D" uid="uid://c2jwp06lj58j2" path="res://images/Customers/YazminSprite.png" id="8_foybm"]
 [ext_resource type="AudioStream" uid="uid://gwmkwdaxwurq" path="res://Audio/Pirate Jam OST 1.mp3" id="8_xa05p"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/AlexRequest2.gd" id="9_taob6"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/GeorgeRequest2.gd" id="10_h6bpe"]
+[ext_resource type="Script" path="res://Scripts/Request scripts/Requests/YazminRequest2.gd" id="11_x4qsi"]
+[ext_resource type="Texture2D" uid="uid://qcq6rhv17kk3" path="res://images/BGs/Front End BG/BG-FrontEnd-whole-640x360.png" id="13_nv76k"]
 
 [node name="Level" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5dxxd")
 
-[node name="RequestManager" type="Control" parent="." node_paths=PackedStringArray("requests")]
+[node name="RequestManager" type="Control" parent="." node_paths=PackedStringArray("requests", "secondRequests")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_t42kr")
-requests = [NodePath("Adam"), NodePath("George")]
+requests = [NodePath("Adam"), NodePath("George"), NodePath("Yazmin")]
+secondRequests = [NodePath("Adam 2"), NodePath("George 2"), NodePath("Yazmin 2")]
 
 [node name="Adam" type="Control" parent="RequestManager"]
 anchors_preset = 0
@@ -54,8 +60,42 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_qwdv7")
 requestersName = "Yazmin"
+requestersPic = ExtResource("8_foybm")
 entryDialogue = "Hello! I'm here to get a-uh, purple potion?"
 completedDialogue = "Thank you so much!"
+incorrectDialogue = "Is this really a purple potion?"
+
+[node name="Adam 2" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_taob6")
+requestersName = "Adam"
+requestersPic = ExtResource("4_xf3af")
+entryDialogue = "Hey, sorry, uhm--I think I was actually supposed to get a green potion, could I have that instead?"
+completedDialogue = "Th-thanks"
+incorrectDialogue = "U-um....this....i'snt what i asked for."
+
+[node name="George 2" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_h6bpe")
+requestersName = "George"
+requestersPic = ExtResource("6_t32jx")
+entryDialogue = "Howdy! It looks like I made a mistake, so sorry to take up more of your time with this, but could you possibly give me a blue potion instead? Thank you so much!"
+completedDialogue = "Thank you so much, I feel better already!"
+incorrectDialogue = "Whoops looks like you gave me the wrong thing."
+
+[node name="Yazmin 2" type="Control" parent="RequestManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_x4qsi")
+requestersName = "Yazmin"
+requestersPic = ExtResource("8_foybm")
+entryDialogue = "Hello! That purple potion worked wonders, could I try the Orange potion as well, I hear about it all the time now."
+completedDialogue = "Thank you!"
 incorrectDialogue = "Is this really a purple potion?"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
@@ -64,8 +104,8 @@ stream = ExtResource("8_xa05p")
 bus = &"BGM"
 script = ExtResource("3_ani2x")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
+[node name="Panel" type="Control" parent="."]
+anchors_preset = 0
 offset_right = 919.0
 offset_bottom = 491.0
 scale = Vector2(1.2521, 1.31836)
@@ -86,6 +126,8 @@ scale = Vector2(0.484678, 0.484678)
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+offset_right = 232.0
+offset_bottom = 164.0
 scale = Vector2(0.793328, 0.751271)
 
 [node name="Hub menu" type="Control" parent="Panel"]
@@ -143,6 +185,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 0
 offset_right = 125.0
 offset_bottom = 29.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Current request:"
 
 [node name="Requester name" type="Label" parent="Panel/Hub menu/RequestTab"]
@@ -151,6 +194,7 @@ layout_mode = 0
 offset_top = 27.3066
 offset_right = 128.0
 offset_bottom = 56.3066
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Requester: TestName"
 
 [node name="Request text" type="RichTextLabel" parent="Panel/Hub menu/RequestTab"]
@@ -159,22 +203,36 @@ layout_mode = 0
 offset_top = 56.8889
 offset_right = 238.0
 offset_bottom = 236.889
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "Good afternoon! My doctor told me to pick up a perscription for my bad eyesight. Usually I can see clear as day but now I'm blind as a bat gahaha. Anywho, he recommended I get a Yellow Potion to get better, could you help me out with that?"
 fit_content = true
 scroll_active = false
 
+[node name="TextureRect" type="TextureRect" parent="Panel/Hub menu"]
+z_index = -1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.996739
+anchor_bottom = 0.997964
+offset_right = 640.0
+offset_bottom = 360.0
+scale = Vector2(0.589324, 0.578629)
+mouse_filter = 2
+texture = ExtResource("13_nv76k")
+metadata/_edit_use_anchors_ = true
+
 [node name="Requesters pic" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 408.0
-offset_top = 168.0
-offset_right = 448.0
-offset_bottom = 208.0
-scale = Vector2(9.03064, 11.8695)
+offset_left = 364.0
+offset_top = 57.0
+offset_right = 404.0
+offset_bottom = 97.0
+scale = Vector2(8.57825, 10.8089)
 texture = ExtResource("4_xf3af")
 expand_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Recipe button" to="." method="_on_recipe_button_pressed"]
 [connection signal="pressed" from="Panel/Hub menu/Right menu/VBoxContainer/Mix button" to="." method="_on_mix_button_pressed"]

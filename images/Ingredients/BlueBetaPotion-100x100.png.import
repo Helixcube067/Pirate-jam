@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfamudynl75oc"
-path="res://.godot/imported/AdamSprite.png-b2f81aa52d058d5ab98d004512c6f6e9.ctex"
+uid="uid://bqx1fneiecn4h"
+path="res://.godot/imported/BlueBetaPotion-100x100.png-498c2529ece17ad09834056fab137ca4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/AdamSprite.png"
-dest_files=["res://.godot/imported/AdamSprite.png-b2f81aa52d058d5ab98d004512c6f6e9.ctex"]
+source_file="res://images/Ingredients/BlueBetaPotion-100x100.png"
+dest_files=["res://.godot/imported/BlueBetaPotion-100x100.png-498c2529ece17ad09834056fab137ca4.ctex"]
 
 [params]
 

@@ -43,7 +43,10 @@ func _process(_delta):
 	GammaCheck()
 	
 func _on_recipe_button_pressed():
-	recipeMenu.visible = true
+	if(recipeMenu.visible):
+		recipeMenu.visible = false
+	else:
+		recipeMenu.visible = true
 func CraftAlphaPotion():
 	#if(PlayerInventory.inventory.get("Lunar Cheese") >= 1 and PlayerInventory.inventory.get("Mandrake Seeds") >= 1):
 		if PlayerInventory.inventory.has("Red Alpha Potion"):
@@ -55,7 +58,7 @@ func CraftAlphaPotion():
 	#else:
 		#print("Not enough materials")
 		PlayerInventory.lastCraft = Alpha
-		#resultsPicSlot.texture = alphaPic
+		resultsPicSlot.texture = alphaPic
 func CraftBetaPotion():
 	#if(PlayerInventory.inventory.get("Dragon's Tooth") >= 1 and PlayerInventory.inventory.get("Mandrake Seeds") >= 1):
 		if PlayerInventory.inventory.has("Blue Beta Potion"):
@@ -67,7 +70,7 @@ func CraftBetaPotion():
 	#else:
 		#print("Not enough materials")
 		PlayerInventory.lastCraft = Beta
-		#resultsPicSlot.texture = betaPic
+		resultsPicSlot.texture = betaPic
 func CraftGammaPotion():
 	#if(PlayerInventory.inventory.get("Lunar Cheese") >= 1 and PlayerInventory.inventory.get("Dragon's Tooth") >= 1):
 		if PlayerInventory.inventory.has("Yellow Gamma Potion"):
@@ -79,7 +82,7 @@ func CraftGammaPotion():
 	#else:
 		#print("Not enough materials")
 		PlayerInventory.lastCraft = Gamma
-		#resultsPicSlot.texture = gammaPic
+		resultsPicSlot.texture = gammaPic
 func CraftPurplePotion():
 	if(PlayerInventory.inventory.get("Red Alpha Potion") >= 1 and PlayerInventory.inventory.get("Blue Beta Potion") >= 1):
 		if PlayerInventory.inventory.has("Purple Potion"):
@@ -91,7 +94,7 @@ func CraftPurplePotion():
 	else:
 		print("Not enough materials")
 	PlayerInventory.lastCraft = Purple
-	#resultsPicSlot.texture = purplePic
+	resultsPicSlot.texture = purplePic
 	
 func CraftOrangePotion():
 	if(PlayerInventory.inventory.get("Red Alpha Potion") >= 1 and PlayerInventory.inventory.get("Yellow Gamma Potion") >= 1):
@@ -104,7 +107,7 @@ func CraftOrangePotion():
 	else:
 		print("Not enough materials")
 	PlayerInventory.lastCraft = Orange
-	#resultsPicSlot.texture = orangePic
+	resultsPicSlot.texture = orangePic
 	
 func CraftGreenPotion():
 	if(PlayerInventory.inventory.get("Blue Beta Potion") >= 1 and PlayerInventory.inventory.get("Yellow Gamma Potion") >= 1):
@@ -117,75 +120,83 @@ func CraftGreenPotion():
 	else:
 		print("Not enough materials")
 	PlayerInventory.lastCraft = Green
-	#resultsPicSlot.texture = greenPic
+	resultsPicSlot.texture = greenPic
 	
 func _on_back_button_pressed():
 	self.visible = false
 	emit_signal("CloseMixMenu")
+	resultsPicSlot.texture = null
+	resultsSlot.text = ""
 func _on_dragon_button_pressed():
 	if(item1 != null and item1 != DragonsTooth):
 		mixSlot2.text = "Dragon's Tooth"
 		item2 = DragonsTooth
-		#item2PicSlot.texture = dragonPic
+		item2PicSlot.texture = dragonPic
 	else:
 		mixSlot1.text = "Dragon's Tooth"
 		item1 = DragonsTooth
-		#item2PicSlot.texture = dragonPic
+		item1PicSlot.texture = dragonPic
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 func _on_lunar_button_pressed():
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 	if(item1 != null and item1 != LunarCheese):
 		mixSlot2.text = "Lunar Cheese"
 		item2 = LunarCheese
-		#item2PicSlot.texture = cheesePic
+		item2PicSlot.texture = cheesePic
 	else:
 		mixSlot1.text = "Lunar Cheese"
 		item1 = LunarCheese
-		#item1PicSlot.texture = cheesePic
+		item1PicSlot.texture = cheesePic
 
 func _on_mandrake_button_pressed():
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 	if(item1 != null and item1 != MandrakeSeeds):
 		mixSlot2.text = "Mandrake Seeds"
 		item2 = MandrakeSeeds
-		#item2PicSlot.texture = seedPic
+		item2PicSlot.texture = seedPic
 	else:
 		mixSlot1.text = "Mandrake Seeds"
 		item1 = MandrakeSeeds
-		#item1PicSlot.texture = seedPic
+		item1PicSlot.texture = seedPic
 		
 func _on_alpha_button_pressed():
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 	if(item1 != null and item1 != Alpha):
 		mixSlot2.text = "Red Alpha Potion"
 		item2 = Alpha
-		#item2PicSlot.texture = alphaPic
+		item2PicSlot.texture = alphaPic
 	else:
 		mixSlot1.text = "Red Alpha Potion"
 		item1 = Alpha
-		#item1PicSlot.texture = alphaPic
+		item1PicSlot.texture = alphaPic
 
 func _on_beta_button_pressed():
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 	if(item1 != null and item1 != Beta):
 		mixSlot2.text = "Blue Beta Potion"
 		item2 = Beta
-		#item2PicSlot.texture = betaPic
+		item2PicSlot.texture = betaPic
 	else:
 		mixSlot1.text = "Blue Beta Potion"
 		item1 = Beta
-		#item2PicSlot.texture = betaPic
+		item1PicSlot.texture = betaPic
 		
 func _on_gamma_button_pressed():
 	resultsSlot.text = ""
+	resultsPicSlot.texture = null
 	if(item1 != null and item1 != Gamma):
 		mixSlot2.text = "Yellow Gamma Potion"
 		item2 = Gamma
-		#item2PicSlot.texture = gammaPic
+		item2PicSlot.texture = gammaPic
 	else:
 		mixSlot1.text = "Yellow Gamma Potion"
 		item1 = Gamma
-		#item1PicSlot.texture = gammaPic
+		item1PicSlot.texture = gammaPic
 func AlphaCheck():
 	if PlayerInventory.inventory.has("Red Alpha Potion"):
 		if(PlayerInventory.inventory.get("Red Alpha Potion") >= 1):
@@ -283,5 +294,5 @@ func _on_mix_button_pressed():
 	mixSlot2.text = ""
 	item1 = null
 	item2 = null
-	item1PicSlot = null
-	item2PicSlot = null
+	item1PicSlot.texture = null
+	item2PicSlot.texture = null

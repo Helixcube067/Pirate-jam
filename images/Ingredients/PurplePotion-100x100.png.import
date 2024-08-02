@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byur7crbmw243"
-path="res://.godot/imported/GeorgeSprite.png-ffce82d5f38cf26ebd156852eada296d.ctex"
+uid="uid://bidcn1iqxcisi"
+path="res://.godot/imported/PurplePotion-100x100.png-683af9bdc63687466e016fc6c483025f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/GeorgeSprite.png"
-dest_files=["res://.godot/imported/GeorgeSprite.png-ffce82d5f38cf26ebd156852eada296d.ctex"]
+source_file="res://images/Ingredients/PurplePotion-100x100.png"
+dest_files=["res://.godot/imported/PurplePotion-100x100.png-683af9bdc63687466e016fc6c483025f.ctex"]
 
 [params]
 
